@@ -50,6 +50,7 @@ export default function IndexPage() {
         <Divider className="my-2.5 md:my-5" />
 
         <Select
+          classNames={{ label: "font-bold text-[16px] leading-[24px]" }}
           variant="bordered"
           label="Social network"
           labelPlacement="outside"
@@ -78,6 +79,7 @@ export default function IndexPage() {
           ))}
         </Select>
         <Select
+          classNames={{ label: "font-bold text-[16px] leading-[24px]" }}
           variant="bordered"
           label="Type of services"
           labelPlacement="outside"
@@ -92,26 +94,39 @@ export default function IndexPage() {
           ))}
         </Select>
         <Input
+          classNames={{ label: "font-bold text-[16px] leading-[24px]" }}
           variant="bordered"
           label="Channel"
           labelPlacement="outside"
+          isRequired
           placeholder="https://t.me/channel"
           description="Provide a link to an open channel or group older than 14 days"
         />
         <Input
+          classNames={{ label: "font-bold text-[16px] leading-[24px]" }}
           variant="bordered"
           label="Number of subscribers"
           labelPlacement="outside"
+          isRequired
           placeholder="1000"
           description="Limit 1-1000"
         />
 
-        <RadioGroup label="Choose your payment method">
+        <RadioGroup
+          classNames={{
+            label: "text-black font-bold text-[16px] leading-[24px]",
+          }}
+          label="Choose your payment method"
+        >
           <Radio value="card">card</Radio>
           <Radio value="cash">cash</Radio>
         </RadioGroup>
 
-        <Button color="default">Create task</Button>
+        <Button className="bg-black" color="default">
+          <span className="text-white font-bold text-[16px] leading-[24px]">
+            Create task
+          </span>
+        </Button>
       </div>
     </DefaultLayout>
   );
