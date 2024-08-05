@@ -22,7 +22,7 @@ export default function IndexPage() {
     <DefaultLayout>
       <Card radius="lg" className="relative border-none bg-black">
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="z-10 text-white text-center">
+          <div className="z-10 text-white text-center font-black text-[24px] leading-[28px] md:text-[48px] md:leading-[54px]">
             Buy Followers, Likes and
             <br /> Reactions on Twitter or
             <br /> Telegram
@@ -36,10 +36,12 @@ export default function IndexPage() {
         />
       </Card>
 
-      <div className="flex flex-col justify-center gap-4 py-8 md:py-10 max-w-[600px] mx-auto">
-        <h1 className="mx-auto">Create task</h1>
+      <div className="flex flex-col justify-center gap-5 pt-[60px] pb-[200px] md:py-[100px] max-w-[600px] mx-auto">
+        <h1 className="mx-auto font-black text-[20px] leading-[26px] md:text-[24px] md:leading-[34px]">
+          Create task
+        </h1>
 
-        <Divider />
+        <Divider className="my-2.5 md:my-5" />
 
         <Select
           variant="bordered"

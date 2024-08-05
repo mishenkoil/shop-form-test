@@ -11,9 +11,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        customFont: ['"Custom Font"', "sans-serif"],
-        // Add more custom font families as needed
+        custom: ['MarkPro', 'sans-serif'],
       },
+    },
+    fontFamily: {
+      sans: ['MarkPro', 'sans-serif'],
     },
   },
   darkMode: "class",
