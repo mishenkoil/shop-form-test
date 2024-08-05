@@ -1,3 +1,4 @@
+import { TelegramIcom, TwitterIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 import {
   Input,
@@ -10,6 +11,11 @@ import {
   Card,
   Image,
 } from "@nextui-org/react";
+
+const SOCIAL_NETWORK_CHOICES = [
+  { key: "telegram", label: "Telegram", logo: <TelegramIcom /> },
+  { key: "twitter", label: "Twitter", logo: <TwitterIcon /> },
+];
 
 export async function getStaticProps() {
   return {
@@ -47,20 +53,35 @@ export default function IndexPage() {
           variant="bordered"
           label="Social network"
           labelPlacement="outside"
-          placeholder="-"
+          placeholder="Telegram"
+          renderValue={(items) =>
+            items.map((item) => {
+              const chosenSocialNetwork = SOCIAL_NETWORK_CHOICES.find(
+                (socialNetwork) => socialNetwork.key === item.key
+              );
+
+              return (
+                <div className="flex flex-row gap-[10px]">
+                  <div className="inline-block">
+                    {chosenSocialNetwork?.logo}
+                  </div>
+                  <div>{chosenSocialNetwork?.label}</div>
+                </div>
+              );
+            })
+          }
         >
-          {[
-            { key: "telegram", label: "Telegram" },
-            { key: "twitter", label: "Twitter" },
-          ].map((choice) => (
-            <SelectItem key={choice.key}>{choice.label}</SelectItem>
+          {SOCIAL_NETWORK_CHOICES.map((choice) => (
+            <SelectItem key={choice.key} startContent={choice.logo}>
+              {choice.label}
+            </SelectItem>
           ))}
         </Select>
         <Select
           variant="bordered"
           label="Type of services"
           labelPlacement="outside"
-          placeholder="-"
+          placeholder="Followers"
         >
           {[
             { key: "followers", label: "Followers" },
