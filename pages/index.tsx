@@ -1,60 +1,95 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
-
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
+import {
+  Input,
+  Select,
+  SelectItem,
+  Radio,
+  RadioGroup,
+  Divider,
+  Button,
+  Card,
+  Image,
+} from "@nextui-org/react";
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}
 
 export default function IndexPage() {
   return (
     <DefaultLayout>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <div className="inline-block max-w-lg text-center justify-center">
-          <h1 className={title()}>Make&nbsp;</h1>
-          <h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-          <br />
-          <h1 className={title()}>
-            websites regardless of your design experience.
-          </h1>
-          <h4 className={subtitle({ class: "mt-4" })}>
-            Beautiful, fast and modern React UI library.
-          </h4>
+      <Card radius="lg" className="relative border-none bg-black">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="z-10 text-white text-center">
+            Buy Followers, Likes and
+            <br /> Reactions on Twitter or
+            <br /> Telegram
+          </div>
         </div>
+        <Image
+          removeWrapper
+          alt="Card background"
+          className="z-0 w-full h-full object-cover ml-[23px] max-w-[715px]"
+          src="line.svg"
+        />
+      </Card>
 
-        <div className="flex gap-3">
-          <Link
-            isExternal
-            className={buttonStyles({
-              color: "primary",
-              radius: "full",
-              variant: "shadow",
-            })}
-            href={siteConfig.links.docs}
-          >
-            Documentation
-          </Link>
-          <Link
-            isExternal
-            className={buttonStyles({ variant: "bordered", radius: "full" })}
-            href={siteConfig.links.github}
-          >
-            <GithubIcon size={20} />
-            GitHub
-          </Link>
-        </div>
+      <div className="flex flex-col justify-center gap-4 py-8 md:py-10 max-w-[600px] mx-auto">
+        <h1 className="mx-auto">Create task</h1>
 
-        <div className="mt-8">
-          <Snippet hideCopyButton hideSymbol variant="bordered">
-            <span>
-              Get started by editing{" "}
-              <Code color="primary">pages/index.tsx</Code>
-            </span>
-          </Snippet>
-        </div>
-      </section>
+        <Divider />
+
+        <Select
+          variant="bordered"
+          label="Social network"
+          labelPlacement="outside"
+          placeholder="-"
+        >
+          {[
+            { key: "telegram", label: "Telegram" },
+            { key: "twitter", label: "Twitter" },
+          ].map((choice) => (
+            <SelectItem key={choice.key}>{choice.label}</SelectItem>
+          ))}
+        </Select>
+        <Select
+          variant="bordered"
+          label="Type of services"
+          labelPlacement="outside"
+          placeholder="-"
+        >
+          {[
+            { key: "followers", label: "Followers" },
+            { key: "reactions", label: "Reactions" },
+            { key: "views", label: "Views" },
+          ].map((choice) => (
+            <SelectItem key={choice.key}>{choice.label}</SelectItem>
+          ))}
+        </Select>
+        <Input
+          variant="bordered"
+          label="Channel"
+          labelPlacement="outside"
+          placeholder="https://t.me/channel"
+          description="Provide a link to an open channel or group older than 14 days"
+        />
+        <Input
+          variant="bordered"
+          label="Number of subscribers"
+          labelPlacement="outside"
+          placeholder="1000"
+          description="Limit 1-1000"
+        />
+
+        <RadioGroup label="Choose your payment method">
+          <Radio value="card">card</Radio>
+          <Radio value="cash">cash</Radio>
+        </RadioGroup>
+
+        <Button color="default">Create task</Button>
+      </div>
     </DefaultLayout>
   );
 }
