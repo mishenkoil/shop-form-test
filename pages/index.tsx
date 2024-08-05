@@ -62,7 +62,7 @@ export default function IndexPage() {
               );
 
               return (
-                <div className="flex flex-row gap-[10px]">
+                <div key={item.key} className="flex flex-row gap-[10px]">
                   <div className="inline-block">
                     {chosenSocialNetwork?.logo}
                   </div>
