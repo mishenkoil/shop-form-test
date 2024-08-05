@@ -18,6 +18,6 @@ module.exports = {
       sans: ['MarkPro', 'sans-serif'],
     },
   },
-  darkMode: "class",
+  darkMode: 'false',
   plugins: [nextui()],
 }
