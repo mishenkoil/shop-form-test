@@ -6,8 +6,8 @@
     html {
       color-scheme: light !important;
     }
-  }
-
+}
+ 
 @font-face {
     font-family: 'MarkPro';
     src: url('/fonts/FontFont_FF.Mark.Pro.otf') format('opentype');
