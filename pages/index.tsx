@@ -140,7 +140,6 @@ export default function IndexPage() {
             label: "text-black font-bold text-[16px] leading-[24px]",
             wrapper: "gap-3 flex-col sm:flex-row",
           }}
-          // orientation="horizontal"
           label="Choose your payment method"
           onValueChange={setChosenPaymentType}
         >
@@ -149,7 +148,7 @@ export default function IndexPage() {
               title="Card"
               info="Visa, Mastercard"
               chosen={chosenPaymentType === "card"}
-              icon={<img src="/shop-form-test/card.png" />}
+              icon={<img src="/shop-form-test/card.png" alt="card" />}
             />
           </Radio>
           <Radio value="cash">
@@ -157,7 +156,7 @@ export default function IndexPage() {
               title="Cash"
               info="USD, EUR, RUB"
               chosen={chosenPaymentType === "cash"}
-              icon={<img src="/shop-form-test/cash.png" />}
+              icon={<img src="/shop-form-test/cash.png" alt="cash" />}
             />
           </Radio>
         </RadioGroup>
