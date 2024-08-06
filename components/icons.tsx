@@ -77,6 +77,7 @@ export const TwitterIcon: React.FC<IconSvgProps> = ({
     </svg>
   );
 };
+
 export const NextUILogo: React.FC<IconSvgProps> = (props) => {
   const { width, height = 40 } = props;
 

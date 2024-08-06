@@ -1,3 +1,4 @@
+import { FormCard } from "@/components/FormCard";
 import { TelegramIcom, TwitterIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 import {
@@ -34,6 +35,7 @@ export async function getStaticProps() {
 export default function IndexPage() {
   const [chosenSocial, setChosenSocial] = useState("");
   const [chosenItemToSell, setChosenItemToSell] = useState("");
+  const [chosenPaymentType, setChosenPaymentType] = useState("");
   let filteredItemsToSell = ITEMS_TO_SELL.filter((item) =>
     item.associated.includes(chosenSocial)
   );
@@ -68,7 +70,7 @@ export default function IndexPage() {
           variant="bordered"
           label="Social network"
           labelPlacement="outside"
-          placeholder="Telegram"
+          placeholder="Ex. Telegram"
           onChange={(event) => {
             setChosenSocial(event.target.value);
             setChosenItemToSell("");
@@ -102,7 +104,7 @@ export default function IndexPage() {
           variant="bordered"
           label="Type of services"
           labelPlacement="outside"
-          placeholder="Followers"
+          placeholder="Ex. Followers"
           isDisabled={filteredItemsToSell.length === 0}
           value={chosenItemToSell}
           onChange={(event) => setChosenItemToSell(event.target.value)}
@@ -133,13 +135,31 @@ export default function IndexPage() {
         />
 
         <RadioGroup
+          id="PaymentRadio"
           classNames={{
             label: "text-black font-bold text-[16px] leading-[24px]",
+            wrapper: "gap-3 flex-col sm:flex-row",
           }}
+          // orientation="horizontal"
           label="Choose your payment method"
+          onValueChange={setChosenPaymentType}
         >
-          <Radio value="card">card</Radio>
-          <Radio value="cash">cash</Radio>
+          <Radio value="card">
+            <FormCard
+              title="Card"
+              info="Visa, Mastercard"
+              chosen={chosenPaymentType === "card"}
+              icon={<img src="/shop-form-test/card.png" />}
+            />
+          </Radio>
+          <Radio value="cash">
+            <FormCard
+              title="Cash"
+              info="USD, EUR, RUB"
+              chosen={chosenPaymentType === "cash"}
+              icon={<img src="/shop-form-test/cash.png" />}
+            />
+          </Radio>
         </RadioGroup>
 
         <Button className="bg-black" color="default">

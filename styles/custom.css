@@ -1,0 +1,15 @@
+#PaymentRadio label > :nth-child(-n+2) {
+    display: none;
+}
+
+#PaymentRadio label > :nth-child(3) {
+    margin: 0;
+}
+
+#PaymentRadio label {
+    margin: 0;
+    padding: 0;
+    flex: 1 1 0%;
+    display: unset;
+    max-width: unset;
+}
