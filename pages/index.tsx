@@ -11,10 +11,18 @@ import {
   Card,
   Image,
 } from "@nextui-org/react";
+import { useState } from "react";
 
 const SOCIAL_NETWORK_CHOICES = [
   { key: "telegram", label: "Telegram", logo: <TelegramIcom /> },
   { key: "twitter", label: "Twitter", logo: <TwitterIcon /> },
+];
+
+const ITEMS_TO_SELL = [
+  { key: "followers", label: "Followers", associated: ["telegram", "twitter"] },
+  { key: "reactions", label: "Reactions", associated: ["telegram"] },
+  { key: "views", label: "Views", associated: ["telegram"] },
+  { key: "likes", label: "Likes", associated: ["twitter"] },
 ];
 
 export async function getStaticProps() {
@@ -24,6 +32,12 @@ export async function getStaticProps() {
 }
 
 export default function IndexPage() {
+  const [chosenSocial, setChosenSocial] = useState("");
+  const [chosenItemToSell, setChosenItemToSell] = useState("");
+  let filteredItemsToSell = ITEMS_TO_SELL.filter((item) =>
+    item.associated.includes(chosenSocial)
+  );
+
   return (
     <DefaultLayout>
       <Card radius="lg" className="relative border-none bg-black">
@@ -55,6 +69,10 @@ export default function IndexPage() {
           label="Social network"
           labelPlacement="outside"
           placeholder="Telegram"
+          onChange={(event) => {
+            setChosenSocial(event.target.value);
+            setChosenItemToSell("");
+          }}
           renderValue={(items) =>
             items.map((item) => {
               const chosenSocialNetwork = SOCIAL_NETWORK_CHOICES.find(
@@ -78,21 +96,22 @@ export default function IndexPage() {
             </SelectItem>
           ))}
         </Select>
+
         <Select
           classNames={{ label: "font-bold text-[16px] leading-[24px]" }}
           variant="bordered"
           label="Type of services"
           labelPlacement="outside"
           placeholder="Followers"
+          isDisabled={filteredItemsToSell.length === 0}
+          value={chosenItemToSell}
+          onChange={(event) => setChosenItemToSell(event.target.value)}
         >
-          {[
-            { key: "followers", label: "Followers" },
-            { key: "reactions", label: "Reactions" },
-            { key: "views", label: "Views" },
-          ].map((choice) => (
+          {filteredItemsToSell.map((choice) => (
             <SelectItem key={choice.key}>{choice.label}</SelectItem>
           ))}
         </Select>
+
         <Input
           classNames={{ label: "font-bold text-[16px] leading-[24px]" }}
           variant="bordered"
@@ -102,6 +121,7 @@ export default function IndexPage() {
           placeholder="https://t.me/channel"
           description="Provide a link to an open channel or group older than 14 days"
         />
+
         <Input
           classNames={{ label: "font-bold text-[16px] leading-[24px]" }}
           variant="bordered"
